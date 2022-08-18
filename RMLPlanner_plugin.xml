@@ -1,0 +1,6 @@
+<library path="libRMLPlanner_plugin">
+  <class name="rml/lwr" type="RMLPlanner" base_class_type="planning_interface::PlannerManager">
+    <description>
+    </description>
+  </class>
+</library>

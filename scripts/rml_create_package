@@ -1,0 +1,9 @@
+#!/bin/bash
+
+FILE=omniplanner_assignment.tgz
+tar cfz $HOME/$FILE -C ~/rml_ws/src/omnibase_planner omnibasePlanner
+
+tar xfzO $HOME/$FILE omnibasePlanner/omnibase_moveit/src/RMLPlanner_context.cpp
+echo -e "\n\n\nYour package file is at $HOME/$FILE"
+echo -e "The package contains the file RMLPlanner_context.cpp printed above."
+echo -e "Please make sure this file is correct before submitting your package."

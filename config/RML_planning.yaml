@@ -1,0 +1,6 @@
+planner_configs:
+  SBL:
+    type: RMLPlanner
+lwr:
+  planner_configs:
+    - RMLPlanner
