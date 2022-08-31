@@ -39,7 +39,7 @@ RMLContext::~RMLContext(){}
 
 
 // TODO
-RMLContext::index RMLContext::select_config_from_tree( const std::vector<RMLContext::weight>& w )
+void RMLContext::select_config_from_tree( const std::vector<RMLContext::weight>& w,RMLContext::index &it)
 {
   RMLContext::index it;
   double sum_w = 0.0;
@@ -81,10 +81,10 @@ RMLContext::index RMLContext::select_config_from_tree( const std::vector<RMLCont
 }
 
 // TODO
-RMLContext::vertex RMLContext::sample_nearby( const RMLContext::vertex& q ){
-  RMLContext::vertex q_rand(q.size(),0.0);
+void RMLContext::sample_nearby( const RMLContext::vertex& q, RMLContext::vertex &q_rand ){
+  q_rand.resize(q.size(),0.0);
   double q_temp = 0;
-  double temp;
+
   // Generate a random configuration near q
   std::random_device rd;
   std::default_random_engine generator(rd());
@@ -112,7 +112,7 @@ RMLContext::vertex RMLContext::sample_nearby( const RMLContext::vertex& q ){
 
 // TODO
 bool RMLContext::is_local_path_collision_free( const RMLContext::vertex& q,
-						 const RMLContext::vertex& q_rand ){
+						 const RMLContext::vertex& q_rand){
     // return true/false if the local path between q and q_rand is collision free
     for(double t=0.01; t<=1; t+=0.01)
     {
@@ -208,8 +208,8 @@ RMLContext::path RMLContext::est( const RMLContext::vertex& q_init,
   // TODO implement EST algorithm and return the path (an ordered sequence of configurations).
   while(!connected)
   {
-    int i1 = select_config_from_tree(weight_init);
-    q_init_temp = sample_nearby(state_init[i1]);
+    select_config_from_tree(weight_init,i1);
+    sample_nearby(state_init[i1],q_init_temp);
     state_init.push_back(q_init_temp);
     add_new_branch_to_tree(i1,weight_init,tree_init);
     
